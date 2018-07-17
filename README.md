@@ -1,6 +1,6 @@
-# Lite Inventory Application
+# Lite Inventory
 
-How to start the Lite Inventory Application application
+How to start the Lite Inventory application
 ---
 
 1. Run `mvn clean install` to build your application
