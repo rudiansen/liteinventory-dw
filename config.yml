@@ -1,3 +1,14 @@
+# Database settings
+database:
+    # the name of the JDBC driver
+    driverClass: org.h2.Driver
+    # the username
+    user: sa
+    # the password
+    password: 
+    # the JDBC URL; the database is called example
+    url: jdbc:h2:./db/example
+    
 logging:
   level: INFO
   loggers:

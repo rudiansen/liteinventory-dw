@@ -1,6 +1,9 @@
 package com.liteinventory;
 
 import io.dropwizard.Application;
+import io.dropwizard.db.PooledDataSourceFactory;
+import io.dropwizard.hibernate.HibernateBundle;
+import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -10,6 +13,14 @@ public class LiteInventoryApplication extends Application<LiteInventoryConfigura
         new LiteInventoryApplication().run(args);
     }
 
+    private final HibernateBundle<LiteInventoryConfiguration> hibernateBundle = 
+    		new HibernateBundle<LiteInventoryConfiguration>(Person.class) {
+    			@Override
+    			public PooledDataSourceFactory getDataSourceFactory(LiteInventoryConfiguration configuration) {
+    				return configuration.getDataSourceFactory();
+    			}    	
+        };
+        
     @Override
     public String getName() {
         return "Lite Inventory Application";
@@ -17,7 +28,14 @@ public class LiteInventoryApplication extends Application<LiteInventoryConfigura
 
     @Override
     public void initialize(final Bootstrap<LiteInventoryConfiguration> bootstrap) {
-        // TODO: application initialization
+    	bootstrap.addBundle(new MigrationsBundle<LiteInventoryConfiguration>() {
+        	@Override
+        	public PooledDataSourceFactory getDataSourceFactory(LiteInventoryConfiguration configuration) {        		
+        		return configuration.getDataSourceFactory();
+        	}        	
+		});
+    	
+    	bootstrap.addBundle(hibernateBundle);
     }
 
     @Override

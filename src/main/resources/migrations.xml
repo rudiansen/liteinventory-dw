@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+         
+    <changeSet id="1" author="rugun">
+        <createTable tableName="perusahaan">
+            <column name="id_perusahaan" type="varchar(12)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nama" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="char(1)">
+            	<constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="2" author="rugun">
+        <createTable tableName="user">
+            <column name="id_user" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_perusahaan" type="varchar(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nama" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="char(1)">
+            	<constraints nullable="false"/>
+            </column>            
+        </createTable>
+        <addForeignKeyConstraint constraintName="fk_user_to_perusahaan"
+			baseTableName="user" baseColumnNames="id_perusahaan"
+			referencedTableName="perusahaan" referencedColumnNames="id_perusahaan" />
+    </changeSet> 
+    
+    <changeSet id="3" author="rugun">
+        <createTable tableName="kategori_barang">
+            <column name="kd_kategori" type="varchar(5)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nama" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>           
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="4" author="rugun">
+        <createTable tableName="barang">
+            <column name="kd_barang" type="varchar(6)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_perusahaan" type="varchar(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nama" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="kd_kategori" type="varchar(5)">
+                <constraints nullable="false"/>
+            </column> 
+            <column name="merk" type="varchar(20)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="tipe" type="varchar(20)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="ukuran" type="varchar(20)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="satuan" type="varchar(3)">
+                <constraints nullable="false"/>
+            </column>          
+        </createTable>
+        <addForeignKeyConstraint constraintName="fk_barang_to_perusahaan"
+			baseTableName="barang" baseColumnNames="id_perusahaan"
+			referencedTableName="perusahaan" referencedColumnNames="id_perusahaan" />
+		<addForeignKeyConstraint constraintName="fk_barang_to_kategori_barang"
+			baseTableName="barang" baseColumnNames="kd_kategori"
+			referencedTableName="kategori_barang" referencedColumnNames="kd_kategori" />
+    </changeSet> 
+    
+    <changeSet id="5" author="rugun">
+        <createTable tableName="wilayah">
+            <column name="kd_wilayah" type="varchar(5)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_perusahaan" type="varchar(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nama" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>           
+        </createTable>
+        <addForeignKeyConstraint constraintName="fk_wilayah_to_perusahaan"
+			baseTableName="wilayah" baseColumnNames="id_perusahaan"
+			referencedTableName="perusahaan" referencedColumnNames="id_perusahaan" />
+    </changeSet>
+    
+    <changeSet id="6" author="rugun">
+        <createTable tableName="kegiatan">
+            <column name="kd_kegiatan" type="varchar(5)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_perusahaan" type="varchar(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nama" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>           
+        </createTable>
+        <addForeignKeyConstraint constraintName="fk_kegiatan_to_perusahaan"
+			baseTableName="kegiatan" baseColumnNames="id_perusahaan"
+			referencedTableName="perusahaan" referencedColumnNames="id_perusahaan" />
+    </changeSet>
+    
+    <changeSet id="7" author="rugun">
+        <createTable tableName="balai">
+            <column name="kd_balai" type="varchar(5)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_perusahaan" type="varchar(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nama" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>           
+        </createTable>
+        <addForeignKeyConstraint constraintName="fk_balai_to_perusahaan"
+			baseTableName="balai" baseColumnNames="id_perusahaan"
+			referencedTableName="perusahaan" referencedColumnNames="id_perusahaan" />
+    </changeSet> 
+    
+    <changeSet id="8" author="rugun">
+        <createTable tableName="satuan">
+            <column name="kd_satuan" type="varchar(3)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>           
+            <column name="nama" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>           
+        </createTable>       
+    </changeSet> 
+    
+    <changeSet id="9" author="rugun">
+        <createTable tableName="provinsi">
+            <column name="kd_provinsi" type="varchar(2)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>           
+            <column name="nama" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>           
+        </createTable>        
+    </changeSet>       
+
+</databaseChangeLog>
