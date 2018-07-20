@@ -662,4 +662,10 @@
 			referencedTableName="daftar_keluar" referencedColumnNames="id_keluar" />        
     </changeSet>
     
+    <changeSet id="22" author="rugun">
+    	<createSequence catalogName="liteinventory" 
+    		sequenceName="doc_id_seq"
+    		incrementBy="1"
+    		startValue="1"/>
+    </changeSet>
 </databaseChangeLog>

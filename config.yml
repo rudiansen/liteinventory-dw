@@ -7,7 +7,7 @@ database:
     # the password
     password: 
     # the JDBC URL; the database is called example
-    url: jdbc:h2:./db/example
+    url: jdbc:h2:~/db/liteinventory
     
 logging:
   level: INFO
