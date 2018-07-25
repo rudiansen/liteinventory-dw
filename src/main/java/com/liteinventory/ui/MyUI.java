@@ -35,7 +35,7 @@ public class MyUI extends UI {
 		navi.addView(Views.MAIN, MainView.class);
 		navi.addView(Views.LOGIN, LoginView.class);
 
-		UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
+		UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 		
 	}
 
