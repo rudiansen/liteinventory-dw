@@ -43,9 +43,8 @@ public class Rkpb {
 	public Rkpb() {		
 	}
 		
-	public Rkpb(long idRkpb, String idPerusahaan, String opd, String cabang, String balai, String unit,
-			String kdProvinsi, String tahunAnggaran1, String tahunAnggaran2, Timestamp serverDatetime) {
-		this.idRkpb = idRkpb;
+	public Rkpb(String idPerusahaan, String opd, String cabang, String balai, String unit,
+			String kdProvinsi, String tahunAnggaran1, String tahunAnggaran2, Timestamp serverDatetime) {		
 		this.idPerusahaan = idPerusahaan;
 		this.opd = opd;
 		this.cabang = cabang;
@@ -64,9 +63,9 @@ public class Rkpb {
 		return idRkpb;
 	}
 	/**
-	 * @param idRkb the idRkpb to set
+	 * @param idRkpb the idRkpb to set
 	 */
-	public void setIdRkb(long idRkpb) {
+	public void setIdRkpb(long idRkpb) {
 		this.idRkpb = idRkpb;
 	}
 	/**
