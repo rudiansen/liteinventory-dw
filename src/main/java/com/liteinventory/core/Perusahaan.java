@@ -1,8 +1,13 @@
 package com.liteinventory.core;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +21,8 @@ public class Perusahaan {
 	private String nama;
 	@Column(name="STATUS", nullable=false, length=1)
 	private char status;
+	
+	private Collection<User> users = new ArrayList<User>();
 	
 	public Perusahaan() {		
 	}
@@ -44,7 +51,14 @@ public class Perusahaan {
 	public void setStatus(char status) {
 		this.status = status;
 	}
-	
-	
+
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="perusahaan")
+	public Collection<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Collection<User> users) {
+		this.users = users;
+	}
 
 }

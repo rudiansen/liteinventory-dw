@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +28,8 @@ public class User {
 	private String email;
 	@Column(name="STATUS", nullable=false, length=1)
 	private char status;
+	
+	private Perusahaan perusahaan;
 	
 	public User() {		
 	}
@@ -94,5 +98,15 @@ public class User {
 	public void setStatus(char status) {
 		this.status = status;
 	}
-		
+
+	@ManyToOne
+	@JoinColumn(name="ID_PERUSAHAAN", nullable=false, updatable=false)
+	public Perusahaan getPerusahaan() {
+		return perusahaan;
+	}
+
+	public void setPerusahaan(Perusahaan perusahaan) {
+		this.perusahaan = perusahaan;
+	}
+			
 }
