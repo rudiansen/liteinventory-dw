@@ -15,6 +15,8 @@ public class LiteInventoryApplication extends Application<LiteInventoryConfigura
 
 	@VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
 	public static class Servlet extends VaadinServlet {
+		
+		private static final long serialVersionUID = 1123127177711L;
 		// Empty
 	}
     public static void main(final String[] args) throws Exception {

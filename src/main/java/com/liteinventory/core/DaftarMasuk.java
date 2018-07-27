@@ -1,12 +1,17 @@
 package com.liteinventory.core;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,7 +20,8 @@ public class DaftarMasuk {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="doc_id_seq")
-	@SequenceGenerator(name="doc_id_seq", sequenceName="doc_id_seq")
+	@SequenceGenerator(name="doc_id_seq", sequenceName="doc_id_seq", allocationSize=1)
+	@Column(name="ID_MASUK", unique = true, nullable = false)
 	private long idMasuk;
 	@Column(name="ID_PERUSAHAAN", nullable=false, length=12)
 	private String idPerusahaan;
@@ -27,10 +33,11 @@ public class DaftarMasuk {
 	private String noFaktur;
 	@Temporal(value=TemporalType.DATE)
 	@Column(name="TANGGAL_FAKTUR", nullable=true)
-	private Date tanggalFaktur;
-	@Temporal(value=TemporalType.DATE)
+	private Date tanggalFaktur;	
 	@Column(name="SERVER_DATETIME", nullable=false)
 	private Timestamp serverDatetime;
+	
+	private Collection<DaftarMasukDetil> daftarMasukDetil = new ArrayList<DaftarMasukDetil>();
 	
 	public DaftarMasuk() {		
 	}
@@ -129,5 +136,18 @@ public class DaftarMasuk {
 	public void setServerDatetime(Timestamp serverDatetime) {
 		this.serverDatetime = serverDatetime;
 	}
+	/**
+	 * @return the daftarMasukDetil
+	 */
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="daftarMasuk", cascade = {CascadeType.REMOVE})
+	public Collection<DaftarMasukDetil> getDaftarMasukDetil() {
+		return daftarMasukDetil;
+	}
+	/**
+	 * @param daftarMasukDetil the daftarMasukDetil to set
+	 */
+	public void setDaftarMasukDetil(Collection<DaftarMasukDetil> daftarMasukDetil) {
+		this.daftarMasukDetil = daftarMasukDetil;
+	}	
 	
 }

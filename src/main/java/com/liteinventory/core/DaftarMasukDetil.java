@@ -7,6 +7,9 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,6 +53,10 @@ public class DaftarMasukDetil {
 	private String tahunPembuatan;
 	@Column(name="KETERANGAN", nullable=true, length=255)
 	private String keterangan;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_MASUK", nullable = false, insertable = false, updatable = false)
+	private DaftarMasuk daftarMasuk;
 	
 	public DaftarMasukDetil() {		
 	}
@@ -284,5 +291,19 @@ public class DaftarMasukDetil {
 	public void setKeterangan(String keterangan) {
 		this.keterangan = keterangan;
 	}
-		
+
+	/**
+	 * @return the daftarMasuk
+	 */
+	public DaftarMasuk getDaftarMasuk() {
+		return daftarMasuk;
+	}
+
+	/**
+	 * @param daftarMasuk the daftarMasuk to set
+	 */
+	public void setDaftarMasuk(DaftarMasuk daftarMasuk) {
+		this.daftarMasuk = daftarMasuk;
+	}
+			
 }

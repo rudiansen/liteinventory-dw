@@ -1,11 +1,14 @@
 package com.liteinventory.core;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class DaftarMasukDetilId {
 
+	@Column(name="ID_MASUK", nullable=false)
 	private long idMasuk;
+	@Column(name="NO_ITEM", nullable=false)
 	private int noItem;
 	
 	public DaftarMasukDetilId() {		
