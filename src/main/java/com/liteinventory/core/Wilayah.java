@@ -1,5 +1,7 @@
 package com.liteinventory.core;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,8 +9,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="wilayah")
-public class Wilayah {
+public class Wilayah implements Serializable {
 
+	private static final long serialVersionUID = 1112132434L;
+	
 	@Id
 	@Column(name="KD_WILAYAH", nullable=false, length=5)
 	private String kdWilayah;

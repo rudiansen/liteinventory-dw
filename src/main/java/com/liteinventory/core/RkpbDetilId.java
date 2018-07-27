@@ -1,11 +1,18 @@
 package com.liteinventory.core;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class RkpbDetilId {
+public class RkpbDetilId implements Serializable {
 
+	private static final long serialVersionUID = 112125634531L;
+	
+	@Column(name="ID_RKPB", nullable=false)
 	private long idRkpb;
+	@Column(name="NO_ITEM", nullable=false)
 	private int noItem;
 	
 	public RkpbDetilId() {		

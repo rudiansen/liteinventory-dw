@@ -1,6 +1,8 @@
 package com.liteinventory.core;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -16,8 +18,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="daftar_masuk_detil")
-public class DaftarMasukDetil {
+public class DaftarMasukDetil implements Serializable {
 
+	private static final long serialVersionUID = 13424342222L;
+	
 	@EmbeddedId
 	@AttributeOverrides({
 		@AttributeOverride(name="idMasuk", column=@Column(name="ID_MASUK")),
@@ -46,7 +50,7 @@ public class DaftarMasukDetil {
 	private String noBuktiTerima;
 	@Temporal(TemporalType.DATE)
 	@Column(name="TANGGAL_BUKTI_TERIMA", nullable=true)
-	private String tanggalBuktiTerima;
+	private Date tanggalBuktiTerima;
 	@Column(name="SPK_PERJANJIAN", nullable=true, length=50)
 	private String spkPerjanjian;
 	@Column(name="TAHUN_PEMBUATAN", nullable=true, length=4)
@@ -63,7 +67,7 @@ public class DaftarMasukDetil {
 
 	public DaftarMasukDetil(DaftarMasukDetilId id, String kdBarang, String namaBarang, String merk, String tipe,
 			BigDecimal jumlah, BigDecimal hargaSatuan, String mataUang, String satuan, BigDecimal totalHarga,
-			String noBuktiTerima, String tanggalBuktiTerima, String spkPerjanjian, String tahunPembuatan,
+			String noBuktiTerima, Date tanggalBuktiTerima, String spkPerjanjian, String tahunPembuatan,
 			String keterangan) {
 		this.id = id;
 		this.kdBarang = kdBarang;
@@ -239,14 +243,14 @@ public class DaftarMasukDetil {
 	/**
 	 * @return the tanggalBuktiTerima
 	 */
-	public String getTanggalBuktiTerima() {
+	public Date getTanggalBuktiTerima() {
 		return tanggalBuktiTerima;
 	}
 
 	/**
 	 * @param tanggalBuktiTerima the tanggalBuktiTerima to set
 	 */
-	public void setTanggalBuktiTerima(String tanggalBuktiTerima) {
+	public void setTanggalBuktiTerima(Date tanggalBuktiTerima) {
 		this.tanggalBuktiTerima = tanggalBuktiTerima;
 	}
 

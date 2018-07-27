@@ -1,20 +1,26 @@
 package com.liteinventory.core;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="rkb")
-public class Rkb {
+public class Rkb implements Serializable {
+	
+	private static final long serialVersionUID = 13424234222L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="doc_id_seq")
@@ -35,10 +41,11 @@ public class Rkb {
 	@Column(name="TAHUN_ANGGARAN_1", nullable=true, length=4)
 	private String tahunAnggaran1;
 	@Column(name="TAHUN_ANGGARAN_2", nullable=true, length=4)
-	private String tahunAnggaran2;
-	@Temporal(value=TemporalType.DATE)
+	private String tahunAnggaran2;	
 	@Column(name="SERVER_DATETIME", nullable=false)
-	private Timestamp serverDatetime;	
+	private Timestamp serverDatetime;
+	
+	private Collection<RkbDetil> rkbDetil = new ArrayList<RkbDetil>(0);
 	
 	public Rkb() {		
 	}
@@ -175,6 +182,21 @@ public class Rkb {
 	 */
 	public void setServerDatetime(Timestamp serverDatetime) {
 		this.serverDatetime = serverDatetime;
+	}
+
+	/**
+	 * @return the rkbDetil
+	 */
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="rkb", cascade= {CascadeType.REMOVE})
+	public Collection<RkbDetil> getRkbDetil() {
+		return rkbDetil;
+	}
+
+	/**
+	 * @param rkbDetil the rkbDetil to set
+	 */
+	public void setRkbDetil(Collection<RkbDetil> rkbDetil) {
+		this.rkbDetil = rkbDetil;
 	}
 
 }

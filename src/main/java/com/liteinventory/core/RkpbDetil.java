@@ -1,5 +1,6 @@
 package com.liteinventory.core;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.AttributeOverride;
@@ -7,12 +8,17 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="rkpb_detil")
-public class RkpbDetil {
+public class RkpbDetil implements Serializable {
 
+	private static final long serialVersionUID = 12413211L;
+	
 	@EmbeddedId
 	@AttributeOverrides({
 		@AttributeOverride(name="idRkbp", column=@Column(name="ID_RKPB")),
@@ -43,6 +49,8 @@ public class RkpbDetil {
 	private String kdRekening;
 	@Column(name="KETERANGAN", nullable=true, length=255)
 	private String keterangan;
+	
+	private Rkpb rkpb;
 	
 	public RkpbDetil() {		
 	}
@@ -246,4 +254,21 @@ public class RkpbDetil {
 	public void setKeterangan(String keterangan) {
 		this.keterangan = keterangan;
 	}
+
+	/**
+	 * @return the rkpb
+	 */
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="ID_RKPB", insertable=false, updatable=false)
+	public Rkpb getRkpb() {
+		return rkpb;
+	}
+
+	/**
+	 * @param rkpb the rkpb to set
+	 */
+	public void setRkpb(Rkpb rkpb) {
+		this.rkpb = rkpb;
+	}
+		
 }

@@ -1,5 +1,6 @@
 package com.liteinventory.core;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,8 +17,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-public class DaftarMasuk {
+public class DaftarMasuk implements Serializable {
 
+	private static final long serialVersionUID = 12143543222L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="doc_id_seq")
 	@SequenceGenerator(name="doc_id_seq", sequenceName="doc_id_seq", allocationSize=1)
@@ -25,19 +28,20 @@ public class DaftarMasuk {
 	private long idMasuk;
 	@Column(name="ID_PERUSAHAAN", nullable=false, length=12)
 	private String idPerusahaan;
+	@Temporal(TemporalType.DATE)
 	@Column(name="TANGGAL", nullable=false)
 	private Date tanggal;
 	@Column(name="DARI", nullable=true, length=30)
 	private String dari;
 	@Column(name="NO_FAKTUR", nullable=true, length=50)
 	private String noFaktur;
-	@Temporal(value=TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	@Column(name="TANGGAL_FAKTUR", nullable=true)
 	private Date tanggalFaktur;	
 	@Column(name="SERVER_DATETIME", nullable=false)
 	private Timestamp serverDatetime;
 	
-	private Collection<DaftarMasukDetil> daftarMasukDetil = new ArrayList<DaftarMasukDetil>();
+	private Collection<DaftarMasukDetil> daftarMasukDetil = new ArrayList<DaftarMasukDetil>(0);
 	
 	public DaftarMasuk() {		
 	}
