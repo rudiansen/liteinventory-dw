@@ -7,9 +7,9 @@ import java.util.Date;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -22,7 +22,7 @@ public class DaftarMasukDetil implements Serializable {
 
 	private static final long serialVersionUID = 13424342222L;
 	
-	@EmbeddedId
+	@Id
 	@AttributeOverrides({
 		@AttributeOverride(name="idMasuk", column=@Column(name="ID_MASUK")),
 		@AttributeOverride(name="noItem", column=@Column(name="NO_ITEM"))

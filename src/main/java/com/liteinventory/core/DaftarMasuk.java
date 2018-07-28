@@ -20,6 +20,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="daftar_masuk")
@@ -53,7 +54,7 @@ public class DaftarMasuk implements Serializable {
 	private Date tanggalFaktur;	
 	@Column(name="SERVER_DATETIME", nullable=false)
 	private Timestamp serverDatetime;
-	
+	@Transient
 	private Collection<DaftarMasukDetil> daftarMasukDetil = new ArrayList<DaftarMasukDetil>(0);
 	
 	public DaftarMasuk() {		
