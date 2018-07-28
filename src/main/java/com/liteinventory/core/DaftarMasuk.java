@@ -8,15 +8,28 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Entity
+@Table(name="daftar_masuk")
+@NamedQueries(
+		{
+			@NamedQuery(
+				name = "com.liteinventory.core.DaftarMasuk.findAll",
+				query = "SELECT dm FROM DaftarMasuk dm"
+			)
+		})
 public class DaftarMasuk implements Serializable {
 
 	private static final long serialVersionUID = 12143543222L;
