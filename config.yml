@@ -6,7 +6,7 @@ database:
     user: sa
     # the password
     password: 
-    # the JDBC URL; the database is called example
+    # the JDBC URL; the database is called liteinventory
     url: jdbc:h2:~/db/liteinventory
     
 logging:
